@@ -1,0 +1,28 @@
+{
+    "name": "braumye/laravel-login-verification",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "braumye",
+            "email": "braum.dev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.3|^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Braumye\\LoginVerification\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Braumye\\LoginVerification\\Tests\\": "tests/"
+        }
+    }
+}

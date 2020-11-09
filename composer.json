@@ -28,7 +28,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Braumnye\\LoginVerification\\LoginVerificationServiceProvider"
+                "Braumye\\LoginVerification\\LoginVerificationServiceProvider"
             ]
         }
     }

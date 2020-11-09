@@ -15,21 +15,22 @@ class LoginVerificationServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/login-verification.php', 'login-verification');
     }
 
+    public function boot(Filesystem $filesystem)
+    {
+        $this->publishConfig();
+        $this->publishMigrations($filesystem);
+        $this->publishTranslations();
+        $this->registerRoutes();
+        $this->registerResources();
+    }
+
     protected function registerResources()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'login-verification');
     }
 
-    public function boot(Filesystem $filesystem)
+    protected function registerRoutes()
     {
-        $this->publishes([
-            __DIR__.'/../config/login-verification.php' => config_path('login-verification.php'),
-        ], 'config');
-
-        $this->publishes([
-            __DIR__.'/../database/migrations/create_login_verifications_tables.php.stub' => $this->getMigrationFileName($filesystem),
-        ], 'migrations');
-
         Route::post(
             $this->app->config->get('login-verification.routes.send'),
             [VerificationController::class, 'send']
@@ -40,7 +41,31 @@ class LoginVerificationServiceProvider extends ServiceProvider
             [VerificationController::class, 'confirm']
         )->name('login-verification.confirm');
 
-        $this->registerResources();
+        Route::get(
+            $this->app->config->get('login-verification.routes.status'),
+            [VerificationController::class, 'status']
+        )->name('login-verification.status');
+    }
+
+    protected function publishConfig()
+    {
+        $this->publishes([
+            __DIR__.'/../config/login-verification.php' => config_path('login-verification.php'),
+        ], 'config');
+    }
+
+    protected function publishMigrations(Filesystem $filesystem)
+    {
+        $this->publishes([
+            __DIR__.'/../database/migrations/create_login_verifications_tables.php.stub' => $this->getMigrationFileName($filesystem),
+        ], 'migrations');
+    }
+
+    protected function publishTranslations()
+    {
+        $this->publishes([
+            __DIR__.'/../resources/lang' => resource_path('lang'),
+        ], 'translations');
     }
 
     /**

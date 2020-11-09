@@ -24,5 +24,12 @@
         "psr-4": {
             "Braumye\\LoginVerification\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Braumnye\\LoginVerification\\LoginVerificationServiceProvider"
+            ]
+        }
     }
 }

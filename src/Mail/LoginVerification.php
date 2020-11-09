@@ -44,6 +44,6 @@ class LoginVerification extends Mailable
      */
     public function build()
     {
-        return $this->view(config('login-verification.mail_view'));
+        return $this->view(config('login-verification.views.mail'));
     }
 }

@@ -11,7 +11,8 @@ return [
         'confirm' => '/confirm',
     ],
 
-    'confirm_view' => '',
-
-    'mail_view' => 'login-verification::mail',
+    'views' => [
+        'confirm' => 'login-verification::confirm',
+        'mail' => 'login-verification::mail',
+    ],
 ];

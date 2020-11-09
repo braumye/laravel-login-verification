@@ -58,7 +58,7 @@ class LoginVerificationServiceProvider extends ServiceProvider
     protected function publishMigrations(Filesystem $filesystem)
     {
         $this->publishes([
-            __DIR__.'/../database/migrations/create_login_verifications_tables.php.stub' => $this->getMigrationFileName($filesystem),
+            __DIR__.'/../database/migrations/create_login_verifications_table.php.stub' => $this->getMigrationFileName($filesystem),
         ], 'migrations');
     }
 
@@ -81,8 +81,8 @@ class LoginVerificationServiceProvider extends ServiceProvider
 
         return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
             ->flatMap(function ($path) use ($filesystem) {
-                return $filesystem->glob($path.'*_create_login_verifications_tables.php');
-            })->push($this->app->databasePath()."/migrations/{$timestamp}_create_login_verifications_tables.php")
+                return $filesystem->glob($path.'*_create_login_verifications_table.php');
+            })->push($this->app->databasePath()."/migrations/{$timestamp}_create_login_verifications_table.php")
             ->first();
     }
 }

@@ -27,6 +27,7 @@ class LoginVerificationServiceProvider extends ServiceProvider
     protected function registerResources()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'login-verification');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'login-verification');
     }
 
     protected function registerRoutes()
